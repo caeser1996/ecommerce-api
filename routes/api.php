@@ -1,6 +1,6 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\API\ProductsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,6 +14,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+
+
+// Update a product;
+// Upload a photo for a product;
+// Delete a product.
+
+Route::namespace('API')->group(function(){
+    // Retrieve all products with pagination;
+    Route::get('/products',[ProductsController::class,'index']);
+    // Create a new product;
+    Route::post('/products',[ProductsController::class,'store']);
+    // Retrieve a specific product;
+    Route::get('/products/{id}',[ProductsController::class,'show']);
 });
