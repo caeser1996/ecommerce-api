@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\ProductImageController;
 use App\Http\Controllers\API\ProductsController;
 use Illuminate\Support\Facades\Route;
 
@@ -16,9 +17,7 @@ use Illuminate\Support\Facades\Route;
 
 
 
-// Update a product;
-// Upload a photo for a product;
-// Delete a product.
+
 
 Route::namespace('API')->group(function(){
     // Retrieve all products with pagination;
@@ -27,4 +26,11 @@ Route::namespace('API')->group(function(){
     Route::post('/products',[ProductsController::class,'store']);
     // Retrieve a specific product;
     Route::get('/products/{id}',[ProductsController::class,'show']);
+    // Update a product;
+    Route::put('/products/{id}',[ProductsController::class,'update']);
+    // Delete a product;
+    Route::delete('/products/{id}',[ProductsController::class,'destroy']);
+    // Upload a photo for a product;
+    Route::post('/products/{id}/upload-photo',[ProductImageController::class,'uploadPhoto']);
+
 });
